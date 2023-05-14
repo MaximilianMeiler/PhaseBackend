@@ -1,6 +1,6 @@
 import "./loadEnv.mjs";
 import posts from "./routes/posts.mjs";
-import posts from "./routes/users.mjs";
+import users from "./routes/users.mjs";
 import cors from "cors";
 import express from "express";
 
@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use("/posts", posts);
-app.use("/users", posts);
+app.use("/users", users);
 
 app.use((err, _req, res, next) => {
   res.status(500).send("Uh oh! An unexpected error occured.")
