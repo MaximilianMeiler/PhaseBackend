@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "dockerworkshop",
+  "name": "phaseapi",
   "builds": [
     { "src": "index.mjs", "use": "@vercel/node" }
   ],
