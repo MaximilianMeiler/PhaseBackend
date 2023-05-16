@@ -12,6 +12,15 @@ router.get("/", async (req, res) => {
   res.send(results).status(200);
 });
 
+router.get("/object/:id", async (req, res) => {
+  let collection = await db.collection("users");
+  let query = {_id: new ObjectId(req.params.id)};
+  let result = await collection.findOne(query);
+
+  if (!result) res.send("Not found").status(404);
+  else res.send(result).status(200);
+});
+
 router.get("/:id", async (req, res) => {
   let collection = await db.collection("users");
   let query = {"data.deviceID": req.params.id};
