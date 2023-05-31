@@ -106,7 +106,7 @@ router.post("/", async (req, res) => {
   let collection = await db.collection("users");
   let newDocument = req.body;
   let filter = {
-    poster: {$eq: newDocument.poster}
+    "data.poster": {$eq: newDocument.poster}
   }
 
   let result = await collection.deleteMany(filter);
