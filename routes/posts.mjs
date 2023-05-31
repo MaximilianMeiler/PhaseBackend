@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   let newDocument = req.body;
   newDocument.date = new Date();
 
-  let result = await collection.deleteMany({"data.poster": newDocument.poster});
+  let result = await collection.deleteMany({"data.poster": newDocument.data.poster});
   result = await collection.insertOne(newDocument);
   res.send(result).status(204);
 });
