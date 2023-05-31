@@ -16,8 +16,13 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   let collection = await db.collection("imageLinks");
   let newDocument = req.body;
+  let filter = {
+    "data.poster": {$eq: newDocument.poster}
+  }
   newDocument.date = new Date();
-  let result = await collection.insertOne(newDocument);
+
+  let result = await collection.deleteMany(filter);
+  result = await collection.insertOne(newDocument);
   res.send(result).status(204);
 });
 
