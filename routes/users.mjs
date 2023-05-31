@@ -105,7 +105,12 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   let collection = await db.collection("users");
   let newDocument = req.body;
-  let result = await collection.insertOne(newDocument);
+  let filter = {
+    poster: {$eq: newDocument.poster}
+  }
+
+  let result = await collection.deleteMany(filter);
+  result = await collection.insertOne(newDocument);
   res.send(result).status(204);
 });
 
